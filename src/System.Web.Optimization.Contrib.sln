@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetBundling.Contrib", "AspNetBundling.Contrib\AspNetBundling.Contrib.csproj", "{C1DA31DB-124C-4019-BF3E-80034A7593B1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Web.Optimization.Contrib", "System.Web.Optimization.Contrib\System.Web.Optimization.Contrib.csproj", "{C1DA31DB-124C-4019-BF3E-80034A7593B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetBundling.Contrib.Tests", "AspNetBundling.Contrib.Tests\AspNetBundling.Contrib.Tests.csproj", "{66F25A8E-56E0-4D4B-A121-9E5C792D3B41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System.Web.Optimization.Contrib.Tests", "System.Web.Optimization.Contrib.Tests\System.Web.Optimization.Contrib.Tests.csproj", "{66F25A8E-56E0-4D4B-A121-9E5C792D3B41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

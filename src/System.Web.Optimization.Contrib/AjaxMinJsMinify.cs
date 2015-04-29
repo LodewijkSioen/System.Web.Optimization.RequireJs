@@ -1,7 +1,7 @@
 ﻿using Microsoft.Ajax.Utilities;
 using System.Web.Optimization;
 
-namespace AspNetBundling.Contrib
+namespace System.Web.Optimization.Contrib
 {
     public class AjaxMinJsMinify : IBundleTransform
     {

@@ -3,7 +3,7 @@ using Shouldly;
 using System.Web;
 using System.Web.Optimization;
 
-namespace AspNetBundling.Contrib.Tests
+namespace System.Web.Optimization.Contrib.Tests
 {
     public class AjaxMinJsMinifyTests
     {
