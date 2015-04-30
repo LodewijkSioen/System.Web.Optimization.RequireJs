@@ -1,0 +1,11 @@
+﻿@using System.Web.Optimization;
+@using System.Web.Optimization.Contrib;
+
+@{
+    BundleTable.EnableOptimizations = true;
+    var bundles = BundleTable.Bundles;
+
+    bundles.Add(new Bundle("~/bundle", new AjaxMinJsMinify())
+        .Include(
+                "~/scripts/jquery-{version}.js"));
+}
