@@ -102,6 +102,8 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="scripts\knockout-3.3.0.debug.js" />
+    <Content Include="scripts\knockout-3.3.0.js" />
     <Content Include="_AppStart.cshtml" />
   </ItemGroup>
   <ItemGroup>

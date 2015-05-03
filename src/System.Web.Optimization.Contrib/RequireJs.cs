@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -6,6 +7,8 @@ namespace System.Web.Optimization.Contrib
 {
     public static class RequireJs
     {
+        private static readonly ConcurrentDictionary<string, string> Defines = new ConcurrentDictionary<string, string>();
+
         public static IHtmlString Render(params string[] paths)
         {
             if (paths == null)
@@ -30,6 +33,12 @@ namespace System.Web.Optimization.Contrib
 
             var propertyName = BundleTable.EnableOptimizations ? "bundles" : "paths";
             return new HtmlString(String.Format("{0}: {{{1}}}", propertyName, string.Join(",", defines)));
+        }
+
+        public static Bundle Include(this Bundle bundle, string define, string virtualPath)
+        {
+            Defines.AddOrUpdate(define, virtualPath, (k, v) => virtualPath);
+            return bundle.Include(virtualPath);
         }
     }
 }

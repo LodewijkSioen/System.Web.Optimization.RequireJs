@@ -5,7 +5,7 @@
     BundleTable.EnableOptimizations = true;
     var bundles = BundleTable.Bundles;
 
-    bundles.Add(new Bundle("~/bundle", new AjaxMinJsMinify())
-        .Include(
-                "~/scripts/jquery-{version}.js"));
+    bundles.Add(new AjaxMinScriptBundle("~/bundles/main")
+        .Include("~/scripts/jquery-{version}.js")
+        /*.Include("~/scripts/knockout-{version}.js")*/);
 }

@@ -5,12 +5,17 @@
     <title></title>
 </head>
 <body>
-    <div id="container"></div>
+    <div id="container" data-bind="text: text"></div>
 
-    @Scripts.Render("~/bundle")
+    @Scripts.Render("~/bundles/main")
     <script>
         $(function () {
-            $("#container").text("Hello World");
+            function viewModel() {
+                this.text = "Hello World";
+            };
+
+            ko.applyBindings(viewModel());
+            $("#container").css("color", "red");
         });
     </script>
 </body>
