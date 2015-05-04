@@ -17,30 +17,29 @@ namespace System.Web.Optimization.Contrib
 
         private string Minify(string concatedScripts, BundleContext context)
         {
-            var mapBundleVirtualPath = string.Concat(context.BundleVirtualPath, ".map");
-            var minified = string.Empty;
+            //Don't use .map because that url will not always be routed trough asp.net
+            var mapBundleVirtualPath = string.Concat(context.BundleVirtualPath, "-map");
+            string minified;
 
-            if (context.EnableOptimizations)
+            var mapBuilder = new StringBuilder();
+            using (var writer = new StringWriter(mapBuilder))
+            using (var sourceMap = new V3SourceMap(writer))
             {
-                var mapBuilder = new StringBuilder();
-                using (var writer = new StringWriter(mapBuilder))
-                using (var sourceMap = new V3SourceMap(writer))
+                var minifier = new Minifier();
+                var settings = new CodeSettings
                 {
-                    var minifier = new Minifier();
-                    var settings = new CodeSettings
-                    {
-                        EvalTreatment = EvalTreatment.MakeImmediateSafe,
-                        PreserveImportantComments = false,
-                        SymbolsMap = sourceMap,
-                        TermSemicolons = true
-                    };
+                    EvalTreatment = EvalTreatment.MakeImmediateSafe,
+                    PreserveImportantComments = false,
+                    SymbolsMap = sourceMap,
+                    TermSemicolons = true
+                };
 
-                    sourceMap.StartPackage(VirtualPathUtility.ToAbsolute(context.BundleVirtualPath), VirtualPathUtility.ToAbsolute(mapBundleVirtualPath));
-                    minified = minifier.MinifyJavaScript(concatedScripts, settings);
-                }
-
-                AddAdHocBundle(mapBuilder.ToString(), mapBundleVirtualPath, context);
+                sourceMap.StartPackage(VirtualPathUtility.ToAbsolute(context.BundleVirtualPath), VirtualPathUtility.ToAbsolute(mapBundleVirtualPath));
+                minified = minifier.MinifyJavaScript(concatedScripts, settings);
             }
+
+            AddAdHocBundle(mapBundleVirtualPath, mapBuilder.ToString(), context);
+
             return minified;
         }
 
@@ -50,33 +49,32 @@ namespace System.Web.Optimization.Contrib
 
             foreach (var file in files)
             {
-                // Get the contents of the bundle,
-                // noting it may have transforms applied that could mess with any source mapping we want to do
                 var contents = file.ApplyTransforms();
+                var virtualPath = file.IncludedVirtualPath;
 
-                // If there were transforms that were applied
                 if (file.Transforms.Count > 0)
                 {
-                    // Write the transformed contents to another Bundle
-                    var fileVirtualPath = file.IncludedVirtualPath;
-                    var virtualPathTransformed = "~/" + Path.ChangeExtension(fileVirtualPath, string.Concat(".transformed", Path.GetExtension(fileVirtualPath)));
-                    AddAdHocBundle(contents, virtualPathTransformed, context);
+                    virtualPath = "~/" + Path.ChangeExtension(virtualPath, string.Concat(".transformed", Path.GetExtension(virtualPath)));
+                    AddAdHocBundle(virtualPath, contents, context);
                 }
 
-                // Source header line then source code
-                contentConcated.AppendLine("///#source 1 1 " + file.VirtualFile.VirtualPath);
+                if (!Diagnostics.Debugger.IsAttached)//this hangs in ajaxmin if the debugger is attached :sadpanda:
+                {
+                    contentConcated.AppendLine(";///#SOURCE 1 1 " + VirtualPathUtility.ToAbsolute(virtualPath));
+                }
                 contentConcated.AppendLine(contents);
             }
 
             return contentConcated.ToString();
         }
 
-        private void AddAdHocBundle(string content, string virtualPath, BundleContext context)
+        private void AddAdHocBundle(string virtualPath, string content, BundleContext context)
         {
             var mapBundle = context.BundleCollection.GetBundleFor(virtualPath);
             if (mapBundle == null)
             {
                 mapBundle = new AdHocBundle(virtualPath);
+                context.BundleCollection.Add(mapBundle);
             }
             var correctlyCastMapBundle = mapBundle as AdHocBundle;
             if (correctlyCastMapBundle == null)
