@@ -69,6 +69,8 @@
     <Compile Include="AdHocBundle.cs" />
     <Compile Include="AjaxMinScriptBundle.cs" />
     <Compile Include="AjaxMinScriptBundleBuilder.cs" />
+    <Compile Include="ModuleNameTransform.cs" />
+    <Compile Include="ModuleRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RequireJs.cs" />
   </ItemGroup>

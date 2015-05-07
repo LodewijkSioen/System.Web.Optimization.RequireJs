@@ -1,14 +1,10 @@
-﻿using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace System.Web.Optimization.Contrib
 {
     public static class RequireJs
     {
-        private static readonly ConcurrentDictionary<string, string> Defines = new ConcurrentDictionary<string, string>();
-
         public static IHtmlString Render(params string[] paths)
         {
             if (paths == null)
@@ -19,7 +15,7 @@ namespace System.Web.Optimization.Contrib
             foreach (var path in paths)
             {
                 var files = BundleResolver.Current.GetBundleContents(path);
-                var filenamesByPath = files.ToDictionary(f => Path.GetFileNameWithoutExtension(f), f => f);
+                var filenamesByPath = files.ToDictionary(f => ModuleRegistry.GetModuleName(f), f => f);
 
                 if (BundleTable.EnableOptimizations)
                 {
@@ -33,12 +29,6 @@ namespace System.Web.Optimization.Contrib
 
             var propertyName = BundleTable.EnableOptimizations ? "bundles" : "paths";
             return new HtmlString(String.Format("{0}: {{{1}}}", propertyName, string.Join(",", defines)));
-        }
-
-        public static Bundle Include(this Bundle bundle, string define, string virtualPath)
-        {
-            Defines.AddOrUpdate(define, virtualPath, (k, v) => virtualPath);
-            return bundle.Include(virtualPath);
         }
     }
 }

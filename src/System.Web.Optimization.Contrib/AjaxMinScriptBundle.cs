@@ -11,6 +11,7 @@
         public AjaxMinScriptBundle(string virtualPath, string cdnPath)
             : base(virtualPath, cdnPath, null)
         {
+            EnableFileExtensionReplacements = false;
             Builder = new AjaxMinScriptBundleBuilder();
         }
     }

@@ -1,16 +1,29 @@
+using Shouldly;
+
 namespace System.Web.Optimization.Contrib.Tests
 {
-    public class RequireJsTests
+    public class ModuleNameTransformTests
     {
-        public void RequireJsShouldRenderPathsWhenOptimizationsNotEnabled()
+        readonly ModuleNameTransform _transform = new ModuleNameTransform("Name");
+
+        public void ScriptWithDefineShouldHaveModuleNameAdded()
         {
-            //var result = RequireJs.Render("~/bundle");
+            _transform.Process("~/test", "Loads of Javascript; define(['dep1', 'dep2'], function(a,b){}); Even More javascript")
+                .ShouldBe("Loads of Javascript; define('Name', ['dep1', 'dep2'], function(a,b){}); Even More javascript");
         }
 
-        public void RequireJsShouldRenderBundlesWhenOptimizationsEnabled()
+        public void ScriptWithDefineThatAlreadyHasAModuleNameShouldNotBeAdded()
         {
+            _transform.Process("~/test", "Loads of Javascript; define('alreadyAName', ['dep1', 'dep2'], function(a,b){}); Even More javascript")
+                .ShouldBe("Loads of Javascript; define('alreadyAName', ['dep1', 'dep2'], function(a,b){}); Even More javascript");
+        }
 
-            //var result = RequireJs.Render("~/bundle");
+        public void ProcessingFileShouldAddItToTheRegistry()
+        {
+            ModuleRegistry.Clear();
+            _transform.Process("~/test", "Bla bla bla");
+
+            ModuleRegistry.GetModuleName("~/test").ShouldBe("Name");
         }
     }
 }

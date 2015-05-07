@@ -8,4 +8,8 @@
     bundles.Add(new AjaxMinScriptBundle("~/bundles/main")
         .Include("~/scripts/jquery-{version}.js")
         .Include("~/scripts/knockout-{version}.js"));
+        
+    bundles.Add(new AjaxMinScriptBundle("~/bundles/requireJs")
+        .Include("~/scripts/jquery-{version}.js", new ModuleNameTransform("jquery"))
+        .Include("~/scripts/knockout-{version}.js", new ModuleNameTransform("knockout")));
 }

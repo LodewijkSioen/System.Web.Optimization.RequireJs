@@ -2,21 +2,29 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
+    <title>Default rendering</title>
 </head>
 <body>
-    <div id="container" data-bind="text: text"></div>
+<h1>Rendering of bundled, minified and ScriptMapped files</h1>
 
-    @Scripts.Render("~/bundles/main")
-    <script>
-        $(function () {
-            function viewModel() {
-                this.text = "Hello World";
-            };
+<div>The text "Hello World" in red should appear under this:</div>
 
-            ko.applyBindings(viewModel());
-            $("#container").css("color", "red");
-        });
-    </script>
+<div id="container" data-bind="text: text"></div>
+
+<div>
+    A second demo with require.js loading can be found <a href="~/RequireJs.cshtml">here</a>
+</div>
+
+@Scripts.Render("~/bundles/main")
+<script>
+    $(function() {
+        function viewModel() {
+            this.text = "Hello World";
+        };
+
+        ko.applyBindings(viewModel());
+        $("#container").css("color", "red");
+    });
+</script>
 </body>
 </html>
