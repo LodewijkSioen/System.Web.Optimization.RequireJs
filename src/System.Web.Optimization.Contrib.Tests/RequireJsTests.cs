@@ -14,8 +14,8 @@ namespace System.Web.Optimization.Contrib.Tests
 
         public void ScriptWithDefineThatAlreadyHasAModuleNameShouldNotBeAdded()
         {
-            _transform.Process("~/test", "Loads of Javascript; define('alreadyAName', ['dep1', 'dep2'], function(a,b){}); Even More javascript")
-                .ShouldBe("Loads of Javascript; define('alreadyAName', ['dep1', 'dep2'], function(a,b){}); Even More javascript");
+            _transform.Process("~/jquery", @"if ( typeof define === ""function"" && define.amd ) {	define( ""jquery"", [], function() {	return jQuery;	});}")
+                .ShouldBe(@"if ( typeof define === ""function"" && define.amd ) {	define( ""jquery"", [], function() {	return jQuery;	});}");
         }
 
         public void ProcessingFileShouldAddItToTheRegistry()

@@ -13,10 +13,6 @@
         bundles: { "@Scripts.Url("~/bundles/requirejs")": ['jquery', 'knockout'] }
     });
 
-    define("test", ["knockout"], function($) {
-        return {'ko': $ };
-    });
-
     require(['jquery', 'knockout'], function (jaykwery, knoqueOwt) {
                 function viewModel() {
                     this.text = "Hello World";
@@ -24,10 +20,6 @@
 
                 knoqueOwt.applyBindings(viewModel());
                 jaykwery("#container").css("color", "red");
-    });
-
-    require(["test"], function(t) {
-        console.log(t);
     });
     </script>
     </body>
