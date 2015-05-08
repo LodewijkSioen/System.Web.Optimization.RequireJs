@@ -54,7 +54,7 @@ namespace System.Web.Optimization.Contrib
 
                 if (file.Transforms.Count > 0)
                 {
-                    virtualPath = "~/" + Path.ChangeExtension(virtualPath, string.Concat(".transformed", Path.GetExtension(virtualPath)));
+                    virtualPath = Path.ChangeExtension(virtualPath, string.Concat(".transformed", Path.GetExtension(virtualPath)));
                     AddAdHocBundle(virtualPath, contents, context);
                 }
 
