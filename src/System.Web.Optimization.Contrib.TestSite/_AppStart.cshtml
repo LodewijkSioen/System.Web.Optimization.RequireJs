@@ -11,5 +11,6 @@
         
     bundles.Add(new AjaxMinScriptBundle("~/bundles/requireJs")
         .Include("~/scripts/jquery-{version}.js", new ModuleNameTransform("jquery"))
+        .Include("~/scripts/domReady.js", new ModuleNameTransform("domReady"))
         .Include("~/scripts/knockout-{version}.js", new ModuleNameTransform("knockout")));
 }

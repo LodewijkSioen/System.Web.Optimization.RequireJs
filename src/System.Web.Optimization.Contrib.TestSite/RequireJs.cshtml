@@ -1,4 +1,4 @@
-﻿@using System.Web.Optimization
+﻿@using System.Web.Optimization.Contrib
 <!DOCTYPE html>
 <html>
     <head>
@@ -9,18 +9,18 @@
     <div id="container" data-bind="text: text"></div>
 
     <script>
-    require.config({
-        bundles: { "@Scripts.Url("~/bundles/requirejs")": ['jquery', 'knockout'] }
-    });
+        require.config({
+            @RequireJs.Render("~/bundles/requirejs")
+        });
 
-    require(['jquery', 'knockout'], function (jaykwery, knoqueOwt) {
-                function viewModel() {
-                    this.text = "Hello World";
-                };
+        require(['domReady!', 'jquery', 'knockout'], function(doc, jaykwery, knoqueOwt) {
+            function viewModel() {
+                this.text = "Hello World";
+            };
 
-                knoqueOwt.applyBindings(viewModel());
-                jaykwery("#container").css("color", "red");
-    });
+            knoqueOwt.applyBindings(viewModel());
+            jaykwery("#container").css("color", "red");
+        });
     </script>
     </body>
 </html>

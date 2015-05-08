@@ -6,16 +6,25 @@ namespace System.Web.Optimization.Contrib.Tests
     {
         readonly ModuleNameTransform _transform = new ModuleNameTransform("Name");
 
+        private const string JQueryDefine = @"if ( typeof define === ""function"" && define.amd ) {	define( ""jquery"", [], function() {	return jQuery;	});}";
+        private const string KnockoutDefine = @"if (typeof define === 'function' && define['amd']) { define(['exports', 'require'], factory); }";
+        private const string KnockoutDefinePostTransform = @"if (typeof define === 'function' && define['amd']) { define('Name', ['exports', 'require'], factory); }";
+        private const string DomReadyDefine = @"define(function () { return domReady; });";
+        private const string DomReadyDefinePostTransform = @"define('Name', function () { return domReady; });";
+
         public void ScriptWithDefineShouldHaveModuleNameAdded()
         {
-            _transform.Process("~/test", "Loads of Javascript; define(['dep1', 'dep2'], function(a,b){}); Even More javascript")
-                .ShouldBe("Loads of Javascript; define('Name', ['dep1', 'dep2'], function(a,b){}); Even More javascript");
+            _transform.Process("~/knockout", KnockoutDefine)
+                .ShouldBe(KnockoutDefinePostTransform);
+
+            _transform.Process("~/domReady", DomReadyDefine)
+                .ShouldBe(DomReadyDefinePostTransform);
         }
 
         public void ScriptWithDefineThatAlreadyHasAModuleNameShouldNotBeAdded()
         {
-            _transform.Process("~/jquery", @"if ( typeof define === ""function"" && define.amd ) {	define( ""jquery"", [], function() {	return jQuery;	});}")
-                .ShouldBe(@"if ( typeof define === ""function"" && define.amd ) {	define( ""jquery"", [], function() {	return jQuery;	});}");
+            _transform.Process("~/jquery", JQueryDefine)
+                .ShouldBe(JQueryDefine);
         }
 
         public void ProcessingFileShouldAddItToTheRegistry()

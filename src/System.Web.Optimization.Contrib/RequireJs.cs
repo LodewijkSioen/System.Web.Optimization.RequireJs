@@ -23,7 +23,12 @@ namespace System.Web.Optimization.Contrib
                 }
                 else
                 {
-                    defines.Add(String.Format(String.Join(",", filenamesByPath.Select(k => string.Format("'{0}': '{1}'", k.Key, k.Value)))));
+                    defines.Add(String.Join(",", filenamesByPath.Select(k =>
+                    {
+                        var absolutPath = VirtualPathUtility.ToAbsolute(k.Value);
+                        var absolutePathWithoutExtension = absolutPath.Substring(0, absolutPath.LastIndexOf('.'));
+                        return string.Format("'{0}': '{1}'", k.Key, absolutePathWithoutExtension);
+                    })));
                 }
             }
 

@@ -5,7 +5,7 @@ namespace System.Web.Optimization.Contrib
     public class ModuleNameTransform : IItemTransform
     {
         private readonly string _moduleName;
-        private readonly Regex _defineRegex = new Regex(@"define\s*\(\s*[^'""]");
+        private readonly Regex _defineRegex = new Regex(@"(define\s*\(\s*)(?=[\[f])");
 
         public ModuleNameTransform(string moduleName)
         {
@@ -16,7 +16,7 @@ namespace System.Web.Optimization.Contrib
         {
             ModuleRegistry.Define(_moduleName, includedVirtualPath);
 
-            return _defineRegex.Replace(input, "define('"+_moduleName+"', ["); //The regex takes the opening bracket as well
+            return _defineRegex.Replace(input, "define('"+_moduleName+"', "); //The regex takes the opening bracket as well
         }
     }
 }
