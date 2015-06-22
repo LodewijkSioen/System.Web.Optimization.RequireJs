@@ -5,14 +5,14 @@ namespace System.Web.Optimization.RequireJs
 {
     public static class RequireJs
     {
-        public static IHtmlString Render(params string[] paths)
+        public static IHtmlString Config(params string[] bundles)
         {
-            if (paths == null)
-                throw new ArgumentNullException("paths");
+            if (bundles == null)
+                throw new ArgumentNullException("bundles");
 
             var defines = new List<String>();
 
-            foreach (var path in paths)
+            foreach (var path in bundles)
             {
                 var files = BundleResolver.Current.GetBundleContents(path);
                 var filenamesByPath = files.ToDictionary(f => ModuleRegistry.GetModuleName(f), f => f);
@@ -33,7 +33,7 @@ namespace System.Web.Optimization.RequireJs
             }
 
             var propertyName = BundleTable.EnableOptimizations ? "bundles" : "paths";
-            return new HtmlString(String.Format("{0}: {{{1}}}", propertyName, string.Join(",", defines)));
+            return new HtmlString(String.Format("require.config({{{0}: {{{1}}}}});", propertyName, string.Join(",", defines)));
         }
     }
 }

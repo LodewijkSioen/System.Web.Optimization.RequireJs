@@ -12,10 +12,10 @@
     <div id="container" data-bind="text: text"></div>
 
     <script>
-        require.config({
-            @RequireJs.Render("~/bundles/requirejs")
-        });
+        //this will render the Require.js config
+        @RequireJs.Config("~/bundles/requirejs")
 
+        //main entry point for app
         require(['domReady!', 'jquery', 'knockout'], function (doc, jaykwery, knoqueOwt) {
             function viewModel() {
                 this.text = "Hello World";
