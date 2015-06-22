@@ -1,13 +1,13 @@
 ﻿using System.Text.RegularExpressions;
 
-namespace System.Web.Optimization.Contrib
+namespace System.Web.Optimization.RequireJs
 {
-    public class ModuleNameTransform : IItemTransform
+    public class RequireModule : IItemTransform
     {
         private readonly string _moduleName;
         private readonly Regex _defineRegex = new Regex(@"(define\s*\(\s*)(?=[\[f])");
 
-        public ModuleNameTransform(string moduleName)
+        public RequireModule(string moduleName)
         {
             _moduleName = moduleName;
         }

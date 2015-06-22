@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AspNetBundling.Contrib")]
+[assembly: AssemblyTitle("System.Web.Optimization.RequireJs.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AspNetBundling.Contrib")]
+[assembly: AssemblyProduct("System.Web.Optimization.RequireJs.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("27753645-1966-4aef-abe5-8fd7b3365bb3")]
+[assembly: Guid("0c7e7a3c-f115-4afe-b5df-28f5708f4fad")]
 
 // Version information for an assembly consists of the following four values:
 //

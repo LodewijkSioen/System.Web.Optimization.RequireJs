@@ -7,8 +7,8 @@
     <ProjectGuid>{66F25A8E-56E0-4D4B-A121-9E5C792D3B41}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>System.Web.Optimization.Contrib.Tests</RootNamespace>
-    <AssemblyName>System.Web.Optimization.Contrib.Tests</AssemblyName>
+    <RootNamespace>System.Web.Optimization.RequireJs.Tests</RootNamespace>
+    <AssemblyName>System.Web.Optimization.RequireJs.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
@@ -74,15 +74,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RequireJsTests.cs" />
+    <Compile Include="ModuleNameTransformTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\System.Web.Optimization.Contrib\System.Web.Optimization.Contrib.csproj">
+    <ProjectReference Include="..\System.Web.Optimization.RequireJs\System.Web.Optimization.RequireJs.csproj">
       <Project>{c1da31db-124c-4019-bf3e-80034a7593b1}</Project>
-      <Name>System.Web.Optimization.Contrib</Name>
+      <Name>System.Web.Optimization.RequireJs</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -7,8 +7,8 @@
     <ProjectGuid>{C1DA31DB-124C-4019-BF3E-80034A7593B1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>System.Web.Optimization.Contrib</RootNamespace>
-    <AssemblyName>System.Web.Optimization.Contrib</AssemblyName>
+    <RootNamespace>System.Web.Optimization.RequireJs</RootNamespace>
+    <AssemblyName>System.Web.Optimization.RequireJs</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
@@ -66,9 +66,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdHocBundle.cs" />
-    <Compile Include="AjaxMinScriptBundle.cs" />
-    <Compile Include="AjaxMinScriptBundleBuilder.cs" />
     <Compile Include="ModuleNameTransform.cs" />
     <Compile Include="ModuleRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

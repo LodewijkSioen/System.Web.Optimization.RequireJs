@@ -1,10 +1,10 @@
 using Shouldly;
 
-namespace System.Web.Optimization.Contrib.Tests
+namespace System.Web.Optimization.RequireJs.Tests
 {
     public class ModuleNameTransformTests
     {
-        readonly ModuleNameTransform _transform = new ModuleNameTransform("Name");
+        readonly RequireModule _transform = new RequireModule("Name");
 
         private const string JQueryDefine = @"if ( typeof define === ""function"" && define.amd ) {	define( ""jquery"", [], function() {	return jQuery;	});}";
         private const string KnockoutDefine = @"if (typeof define === 'function' && define['amd']) { define(['exports', 'require'], factory); }";

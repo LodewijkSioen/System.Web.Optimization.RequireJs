@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>System.Web.Optimization.Contrib.TestSite</RootNamespace>
-    <AssemblyName>System.Web.Optimization.Contrib.TestSite</AssemblyName>
+    <RootNamespace>System.Web.Optimization.RequireJs.TestSite</RootNamespace>
+    <AssemblyName>System.Web.Optimization.RequireJs.TestSite</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -39,8 +39,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AjaxMin, Version=5.14.5506.26196, Culture=neutral, PublicKeyToken=21ef50ce11b5d80f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AjaxMin.5.14.5506.26202\lib\net40\AjaxMin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNetBundling, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AspNetBundling.2.0.1.0\lib\net45\AspNetBundling.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -96,7 +104,6 @@
   <ItemGroup>
     <Content Include="packages.config" />
     <Content Include="Default.cshtml" />
-    <Content Include="RequireJs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -105,13 +112,11 @@
     </None>
     <Content Include="scripts\domReady.js" />
     <Content Include="scripts\require.js" />
-    <Content Include="scripts\knockout-3.3.0.debug.js" />
     <Content Include="scripts\knockout-3.3.0.js" />
     <Content Include="_AppStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="scripts\jquery-2.1.3.js" />
-    <Content Include="scripts\jquery-2.1.3.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -120,9 +125,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\System.Web.Optimization.Contrib\System.Web.Optimization.Contrib.csproj">
+    <ProjectReference Include="..\System.Web.Optimization.RequireJs\System.Web.Optimization.RequireJs.csproj">
       <Project>{c1da31db-124c-4019-bf3e-80034a7593b1}</Project>
-      <Name>System.Web.Optimization.Contrib</Name>
+      <Name>System.Web.Optimization.RequireJs</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

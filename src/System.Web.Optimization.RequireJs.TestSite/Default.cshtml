@@ -1,11 +1,14 @@
-﻿@using System.Web.Optimization.Contrib
+﻿@using System.Web.Optimization.RequireJs
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Rendering for RequireJs</title>
-        <script src="~/scripts/require.js"></script>
-    </head>
-    <body>
+<head>
+    <title>Rendering for RequireJs</title>
+    <script src="~/scripts/require.js"></script>
+</head>
+<body>
+
+    <h1>Rendering of bundled, minified and ScriptMapped files</h1>
+    <div>The text "Hello World" in red should appear under this:</div>
     <div id="container" data-bind="text: text"></div>
 
     <script>
@@ -13,7 +16,7 @@
             @RequireJs.Render("~/bundles/requirejs")
         });
 
-        require(['domReady!', 'jquery', 'knockout'], function(doc, jaykwery, knoqueOwt) {
+        require(['domReady!', 'jquery', 'knockout'], function (doc, jaykwery, knoqueOwt) {
             function viewModel() {
                 this.text = "Hello World";
             };
@@ -22,5 +25,5 @@
             jaykwery("#container").css("color", "red");
         });
     </script>
-    </body>
+</body>
 </html>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace System.Web.Optimization.Contrib
+namespace System.Web.Optimization.RequireJs
 {
     public static class ModuleRegistry
     {

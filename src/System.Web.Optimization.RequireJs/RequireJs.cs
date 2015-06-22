@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace System.Web.Optimization.Contrib
+namespace System.Web.Optimization.RequireJs
 {
     public static class RequireJs
     {

@@ -1,0 +1,13 @@
+﻿@using System.Web.Optimization
+@using System.Web.Optimization.RequireJs
+@using AspNetBundling
+@{
+    BundleTable.EnableOptimizations = true;
+    var bundles = BundleTable.Bundles;
+    
+    //We can't use already minified files =(
+    bundles.Add(new ScriptWithSourceMapBundle("~/bundles/requireJs")
+        .Include("~/scripts/jquery-{version}.js", new RequireModule("jquery"))
+        .Include("~/scripts/domReady.js", new RequireModule("domReady"))
+        .Include("~/scripts/knockout-{version}.js", new RequireModule("knockout")));
+}
