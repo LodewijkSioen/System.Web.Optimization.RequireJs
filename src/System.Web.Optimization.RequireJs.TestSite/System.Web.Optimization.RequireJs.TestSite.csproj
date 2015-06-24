@@ -113,6 +113,9 @@
     <Content Include="scripts\domReady.js" />
     <Content Include="scripts\require.js" />
     <Content Include="scripts\knockout-3.3.0.js" />
+    <Content Include="scripts\text.js" />
+    <Content Include="scripts\ViewModel.html" />
+    <Content Include="scripts\ViewModel.js" />
     <Content Include="_AppStart.cshtml" />
   </ItemGroup>
   <ItemGroup>

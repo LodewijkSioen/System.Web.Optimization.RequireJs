@@ -5,7 +5,7 @@ namespace System.Web.Optimization.RequireJs
 {
     public static class RequireJs
     {
-        public static IHtmlString Config(params string[] bundles)
+        public static IHtmlString Config(string baseUrl, params string[] bundles)
         {
             if (bundles == null)
                 throw new ArgumentNullException("bundles");
@@ -32,8 +32,9 @@ namespace System.Web.Optimization.RequireJs
                 }
             }
 
+            var absoluteBaseUrl = VirtualPathUtility.ToAbsolute(baseUrl);
             var propertyName = BundleTable.EnableOptimizations ? "bundles" : "paths";
-            return new HtmlString(String.Format("require.config({{{0}: {{{1}}}}});", propertyName, string.Join(",", defines)));
+            return new HtmlString(String.Format("require.config({{baseUrl: '{0}', {1}: {{{2}}}}});", absoluteBaseUrl, propertyName, string.Join(",", defines)));
         }
     }
 }

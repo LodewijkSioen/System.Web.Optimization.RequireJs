@@ -4,26 +4,28 @@
 <head>
     <title>Rendering for RequireJs</title>
     <script src="~/scripts/require.js"></script>
-</head>
-<body>
-
-    <h1>Rendering of bundled, minified and ScriptMapped files</h1>
-    <div>The text "Hello World" in red should appear under this:</div>
-    <div id="container" data-bind="text: text"></div>
-
     <script>
         //this will render the Require.js config
-        @RequireJs.Config("~/bundles/requirejs")
+        @RequireJs.Config(
+            baseUrl: "~/scripts",
+            bundles: "~/bundles/requirejs")
 
         //main entry point for app
-        require(['domReady!', 'jquery', 'knockout'], function (doc, jaykwery, knoqueOwt) {
-            function viewModel() {
-                this.text = "Hello World";
-            };
-
-            knoqueOwt.applyBindings(viewModel());
-            jaykwery("#container").css("color", "red");
+        require(['domReady!', 'knockout', 'jquery'], function (doc, knoqueOwt, jayKwarie) {
+            knoqueOwt.components.register('viewmodel', { require: 'ViewModel' });
+            knoqueOwt.applyBindings();
+            jayKwarie("#container").css('color', 'red');
         });
     </script>
+
+</head>
+<body>
+    <h1>Rendering of bundled, minified and ScriptMapped files</h1>
+    <fieldset>
+        <legend>The following should be a working knockout thing</legend>
+        <viewmodel params="initialText: 'Hello World'"></viewmodel>
+    </fieldset>
+
+    <div id="container">This text should be colored red by jQuery</div>
 </body>
 </html>

@@ -9,5 +9,8 @@
     bundles.Add(new ScriptWithSourceMapBundle("~/bundles/requireJs")
         .Include("~/scripts/jquery-{version}.js", new RequireModule("jquery"))
         .Include("~/scripts/domReady.js", new RequireModule("domReady"))
-        .Include("~/scripts/knockout-{version}.js", new RequireModule("knockout")));
+        .Include("~/scripts/text.js", new RequireModule("text"))
+        .Include("~/scripts/knockout-{version}.js", new RequireModule("knockout"))
+        .Include("~/scripts/ViewModel.js", new RequireModule("ViewModel"))
+        .Include("~/scripts/ViewModel.html", new RequireModule("text!ViewModel.html")));
 }
