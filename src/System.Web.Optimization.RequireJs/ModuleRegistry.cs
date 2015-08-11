@@ -13,7 +13,12 @@ namespace System.Web.Optimization.RequireJs
 
         public static string GetModuleName(string virtualPath)
         {
-            return DefinesByVirtualPath[virtualPath];
+            if (DefinesByVirtualPath.ContainsKey(virtualPath))
+            {
+                return DefinesByVirtualPath[virtualPath];    
+            }
+
+            return VirtualPathUtility.ToAbsolute(virtualPath).DeriveModuleName();
         }
 
         public static void Clear()

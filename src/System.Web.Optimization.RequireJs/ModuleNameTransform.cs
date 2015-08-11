@@ -9,6 +9,8 @@ namespace System.Web.Optimization.RequireJs
 
         public RequireModule(string moduleName)
         {
+            if(moduleName == null)
+                throw new ArgumentNullException("moduleName");
             _moduleName = moduleName;
         }
 
@@ -25,7 +27,7 @@ namespace System.Web.Optimization.RequireJs
                 return string.Format(@"define(""{0}"",[],function(){{return ""{1}"";}});", _moduleName, sanitizedInput);
             }
 
-            return _defineRegex.Replace(input, "define('"+_moduleName+"', "); //The regex takes the opening bracket as well
+            return _defineRegex.Replace(input, "define('" + _moduleName + "', "); //The regex takes the opening bracket as well
         }
     }
 }

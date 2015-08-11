@@ -1,0 +1,30 @@
+﻿<table>
+    <tr id="header">
+        <td class="shift">&nbsp;</td>
+        <td id="headerDays">
+            <table>
+                <tr data-bind="foreach: Days">
+                    <td class="day"><span data-bind="text: Name"></span></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td id="columnShift">
+            <table>
+                <tbody data-bind="foreach: Shifts">
+                    <tr class="shift" data-bind="attr:{id: Id}">
+                        <td><span data-bind="html: Name"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+        <td id="body">
+            <table data-bind="foreach: {data: Shifts}">
+                <tbody>
+                    <!-- ko component: { name: "shift", params: { name: $data.Name, id: $data.Id, days: $root.Days, tasks: $data.GetTasksForShift($root.Tasks) } } --><!-- /ko -->
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</table>

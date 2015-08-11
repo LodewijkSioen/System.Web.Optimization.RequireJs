@@ -1,0 +1,83 @@
+﻿@using System.Web.Optimization
+@using System.Web.Optimization.RequireJs
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rendering for RequireJs</title>
+    @Styles.Render("~/bundles/styles")
+    <script src="~/scripts/require.js"></script>
+    <script>
+        //this will render the Require.js config
+        @RequireJs.Config(bundlePath: "~/bundles/requirejs")
+
+        //main entry point for app
+        require(['domReady!', 'knockout', "components/Factory"], function (doc, ko, factory) {
+            ko.components.register('taskgrid', { require: 'components/TaskGridViewModel' });
+            ko.components.register('shift', { require: 'components/ShiftViewModel' });
+            ko.components.register('day', { require: 'components/DayViewModel' });
+            ko.components.register('task', { require: 'components/TaskViewModel' });
+
+            ko.bindingHandlers.componentAfterRender = {
+                init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+                    // This will be called when the binding is first applied to an element
+                    // Set up any initial state, event handlers, etc. here
+                    if (bindingContext.$data.init) bindingContext.$data.init(element, valueAccessor, allBindings, viewModel, bindingContext);
+                },
+                update: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
+                    // This will be called once when the binding is first applied to an element,
+                    // and again whenever any observables/computeds that are accessed change
+                    // Update the DOM element based on the supplied values here.
+                    if (bindingContext.$data.update) bindingContext.$data.update(element, valueAccessor, allBindings, viewModel, bindingContext);
+                }
+            };
+
+
+
+            var baseData = {
+                Days: [new factory.Day("06/07"), new factory.Day("07/07"), new factory.Day("08/07"), new factory.Day("09/07")],
+                Shifts: [new factory.Shift("", "shift0"), new factory.Shift("VM", "shift1"), new factory.Shift("NM", "shift2"), new factory.Shift("NA", "shift3")],
+                Tasks: [
+                    new factory.Task("taak 01", "shift2", "06/07"),
+                    new factory.Task("taak 02", "shift1", "07/07"),
+                    new factory.Task("taak 03", "shift0", "08/07"),
+                    new factory.Task("taak 04", "shift3", "09/07"),
+                    new factory.Task("taak 05", "shift2", "06/07"),
+                    new factory.Task("taak 06", "shift3", "07/07"),
+                    new factory.Task("taak 07", "shift2", "08/07"),
+                    new factory.Task("taak 08", "shift2", "09/07"),
+                    new factory.Task("taak 09", "shift1", "06/07"),
+                    new factory.Task("taak 10", "shift2", "07/07"),
+                    new factory.Task("taak 11", "shift2", "08/07"),
+                    new factory.Task("taak 12", "shift0", "09/07"),
+                    new factory.Task("taak 02", "shift1", "07/07"),
+                    new factory.Task("taak 03", "shift0", "08/07"),
+                    new factory.Task("taak 04", "shift3", "09/07"),
+                    new factory.Task("taak 05", "shift2", "06/07"),
+                    new factory.Task("taak 06", "shift3", "07/07"),
+                    new factory.Task("taak 07", "shift2", "08/07"),
+                    new factory.Task("taak 08", "shift2", "09/07"),
+                    new factory.Task("taak 09", "shift1", "06/07"),
+                    new factory.Task("taak 10", "shift2", "07/07"),
+                    new factory.Task("taak 11", "shift2", "08/07"),
+                    new factory.Task("taak 13", "shift1", "06/07"),
+                    new factory.Task("taak 14", "shift2", "07/07"),
+                    new factory.Task("taak 15", "shift3", "08/07"),
+                    new factory.Task("taak 16", "shift3", "09/07"),
+                    new factory.Task("taak 17", "shift1", "08/07"),
+                    new factory.Task("taak 18", "shift2", "08/07"),
+                    new factory.Task("taak 19", "shift2", "08/07"),
+                    new factory.Task("taak 20", "shift0", "08/07")
+                ]
+            };
+
+            ko.applyBindings(baseData);
+        });
+    </script>
+
+</head>
+<body>
+    <div id="taskgrid">
+        <taskgrid params="days: Days, shifts: Shifts, tasks: Tasks"></taskgrid>
+    </div>
+</body>
+</html>

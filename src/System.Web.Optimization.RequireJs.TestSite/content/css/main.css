@@ -1,0 +1,9 @@
+﻿#taskgrid td {
+    border: solid gray 1px;
+}
+#taskgrid td.shift {
+    width: 30px;
+}
+#taskgrid td.task, #taskgrid td.day {
+    width: 200px;
+}

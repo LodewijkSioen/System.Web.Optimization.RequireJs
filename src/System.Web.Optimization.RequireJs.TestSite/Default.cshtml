@@ -6,13 +6,11 @@
     <script src="~/scripts/require.js"></script>
     <script>
         //this will render the Require.js config
-        @RequireJs.Config(
-            baseUrl: "~/scripts",
-            bundles: "~/bundles/requirejs")
+        @RequireJs.Config(bundlePath: "~/bundles/requirejs")
 
         //main entry point for app
         require(['domReady!', 'knockout', 'jquery'], function (doc, knoqueOwt, jayKwarie) {
-            knoqueOwt.components.register('viewmodel', { require: 'ViewModel' });
+            knoqueOwt.components.register('viewmodel', { require: 'components/ViewModel' });
             knoqueOwt.applyBindings();
             jayKwarie("#container").css('color', 'red');
         });

@@ -102,8 +102,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="content\css\main.css" />
+    <Content Include="content\images\favicon.ico" />
+    <Content Include="content\images\sort_asc.png" />
+    <Content Include="content\images\sort_asc_disabled.png" />
+    <Content Include="content\images\sort_both.png" />
+    <Content Include="content\images\sort_desc.png" />
+    <Content Include="content\images\sort_desc_disabled.png" />
     <Content Include="packages.config" />
     <Content Include="Default.cshtml" />
+    <Content Include="scripts\components\Factory.js" />
+    <Content Include="scripts\components\TaskGridViewModel.html" />
+    <Content Include="scripts\components\TaskViewModel.html" />
+    <Content Include="scripts\components\ShiftViewModel.html" />
+    <Content Include="scripts\components\DayViewModel.html" />
+    <Content Include="scripts\components\CategoryViewModel.js" />
+    <Content Include="scripts\components\DayViewModel.js" />
+    <Content Include="scripts\components\ShiftViewModel.js" />
+    <Content Include="scripts\components\TaskViewModel.js" />
+    <Content Include="scripts\components\TaskGridViewModel.js" />
+    <Content Include="scripts\components\CategoryViewModel.html" />
+    <Content Include="scripts\underscore.js" />
+    <Content Include="TaskGrid.cshtml" />
+    <Content Include="content\images\Sorting icons.psd" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -114,8 +135,8 @@
     <Content Include="scripts\require.js" />
     <Content Include="scripts\knockout-3.3.0.js" />
     <Content Include="scripts\text.js" />
-    <Content Include="scripts\ViewModel.html" />
-    <Content Include="scripts\ViewModel.js" />
+    <Content Include="scripts\components\ViewModel.html" />
+    <Content Include="scripts\components\ViewModel.js" />
     <Content Include="_AppStart.cshtml" />
   </ItemGroup>
   <ItemGroup>

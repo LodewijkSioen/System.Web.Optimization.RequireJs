@@ -1,0 +1,7 @@
+﻿<tr>
+    <!--ko foreach: Days-->
+    <td class="day">
+        <day params="name: $data.Name, tasks: $data.GetTasksForDay($parent.Tasks)"></day>
+    </td>
+    <!--/ko-->
+</tr>

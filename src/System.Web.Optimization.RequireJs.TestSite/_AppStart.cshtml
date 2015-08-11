@@ -2,8 +2,15 @@
 @using System.Web.Optimization.RequireJs
 @using AspNetBundling
 @{
-    BundleTable.EnableOptimizations = true;
+    BundleTable.EnableOptimizations = false;
     var bundles = BundleTable.Bundles;
+    
+    //Setup RequireJs
+    RequireJs.SetBaseUrl("~/scripts");
+    
+    bundles.Add(new StyleBundle("~/bundles/styles")
+        .Include("~/content/css/jquery.dataTables.css")
+        .Include("~/content/css/main.css"));
     
     //We can't use already minified files =(
     bundles.Add(new ScriptWithSourceMapBundle("~/bundles/requireJs")
@@ -11,6 +18,7 @@
         .Include("~/scripts/domReady.js", new RequireModule("domReady"))
         .Include("~/scripts/text.js", new RequireModule("text"))
         .Include("~/scripts/knockout-{version}.js", new RequireModule("knockout"))
-        .Include("~/scripts/ViewModel.js", new RequireModule("ViewModel"))
-        .Include("~/scripts/ViewModel.html", new RequireModule("text!ViewModel.html")));
+        .Include("~/scripts/underscore.js", new RequireModule("underscore"))
+        .IncludeModuleDirectory("~/scripts/components/")
+    );
 }
